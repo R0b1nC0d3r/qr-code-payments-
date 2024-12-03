@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UPI Payment Portal</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+</head>
+<body>
+  <div class="container">
+    <div class="theme-toggle" onclick="toggleTheme()">🌙 Switch Theme</div>
+    <h1>UPI Payment</h1>
+    <form id="paymentForm">
+      <label for="amount">Amount (<span id="currency-symbol">₹</span>):</label>
+      <input type="number" id="amount" placeholder="Enter amount (e.g., 100)" min="1" required onfocus="speak('Enter the amount')" />
+
+      <label for="message">Message:</label>
+      <input type="text" id="message" placeholder="Enter a message (e.g., Thanks! 😊)" maxlength="50" required onfocus="speak('Enter the message')" />
+
+      <label for="category">Category:</label>
+      <select id="category" onchange="speak('Category selected')" required>
+        <option value="Personal">Personal</option>
+        <option value="Business">Business</option>
+        <option value="Utilities">Utilities</option>
+      </select>
+
+      <label for="currency">Currency:</label>
+      <select id="currency" onchange="updateCurrencySymbol()">
+        <option value="INR" selected>INR</option>
+        <option value="USD">USD</option>
+        <option value="EUR">EUR</option>
+      </select>
+
+      <button type="button" onclick="generateQRCode()">Generate QR Code</button>
+    </form>
+
+    <div id="qr-container">
+      <canvas id="qr-code"></canvas>
+      <div class="social-buttons">
+        <a href="#" id="whatsapp-share" target="_blank">Share on WhatsApp</a>
+        <a href="#" id="telegram-share" target="_blank">Share on Telegram</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="widget" onclick="openWidget()">Quick Access</div>
+  <script src="script.js"></script>
+</body>
+</html>
